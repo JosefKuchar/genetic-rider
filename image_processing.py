@@ -81,8 +81,15 @@ class ImageProcessing:
 
         self.recognize_images(images)
 
-    def get_state():
-        pass
+    def get_state(self):
+        (x0, x1, y0, y1, width, height) = self.calculate_sizes()
+
+        (r, g, b) = ImageGrab.grab((x0, y0, x0 + 1, y0 + 1)).getpixel((0, 0))
+
+        if r < 10 and g < 10 and b < 10:
+            return 1
+        else:
+            return 0
 
     def get_ending_time(self):
         (x0, x1, y0, y1, width, height) = self.calculate_sizes()
